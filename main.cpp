@@ -3,9 +3,9 @@
 bool isPyth(unsigned a, unsigned b, unsigned c)
 {
   unsigned a2 = a*a, b2 = b*b, c2 = c*c;
-  bool p = (a2 = (b2 + c2));
-  p = p || (b2 = (a2 + c2));
-  p = p || (c2 = (a2 + b2));
+  bool p = (a2 == (b2 + c2));
+  p = p || (b2 == (a2 + c2));
+  p = p || (c2 == (a2 + b2));
   return p;
 }
 
