@@ -4,12 +4,12 @@ int main()
 {
   using uint = unsigned;
   uint a = 0;
-  size_t count = 0;
+  size_t sum_squares = 0;
   while (std::cin >> a) {
-    count ++;
+    sum_squares += a * a;
   }
   if (std::cin.eof()) {
-    std::cout << count;
+    std::cout << sum_squares;
     std::cout << "\n";
   }
   else if (std::cin.fail()) {
