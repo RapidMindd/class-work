@@ -7,13 +7,17 @@ bool isPyth(unsigned a, unsigned b, unsigned c)
 {
   if (!(MAX / a < a) && !(MAX / b < b) && !(MAX / c < c)) {
     unsigned a2 = a*a, b2 = b*b, c2 = c*c;
-    bool p = (a2 == (b2 + c2));
-    p = p || (b2 == (a2 + c2));
-    p = p || (c2 == (a2 + b2));
-    return p;
+    if ((MAX - a2 > b2) && (MAX - a2 > c2) && (MAX - b2 > c2)) {
+      bool p = (a2 == (b2 + c2));
+      p = p || (b2 == (a2 + c2));
+      p = p || (c2 == (a2 + b2));
+      return p;
+    }
+    else throw
+      std::overflow_error("addition overflow");
   }
   else throw
-    std::overflow_error("sq_overflow");
+    std::overflow_error("squaring overflow");
 }
 
 int main()
@@ -27,8 +31,8 @@ int main()
       count += isPyth(a, b, c) ? 1 : 0;
       c = b;
       b = a;
-    } catch (const std::overflow_error &) {
-      std::cerr << "Overflow while squaring\n";
+    } catch (const std::overflow_error &e) {
+      std::cerr << e.what() << "\n";
       return 2;
     }
   }
